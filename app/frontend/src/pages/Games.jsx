@@ -6,7 +6,7 @@ import LeaderboardBtn from '../components/LeaderboardBtn';
 import LoginBtn from '../components/LoginBtn';
 import GamerFilter from '../components/GameFilter';
 import '../styles/pages/games.css';
-
+//oi
 const Games = () => {
   const [currentFilter, setCurrentFilter] = useState('Status do Jogo');
   const [isAdm, setIsAdm] = useState(false);
