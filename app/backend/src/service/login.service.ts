@@ -1,7 +1,6 @@
 import { ModelStatic } from 'sequelize';
 import * as bcrypt from 'bcryptjs';
 
-import { log } from 'console';
 import User from '../database/models/User.model';
 import { ILogin, IUser } from '../interfaces/IUser';
 
