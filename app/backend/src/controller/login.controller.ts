@@ -22,4 +22,14 @@ export default class LoginController {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
   }
+
+  verifyToken = async (req: Request, res: Response) => {
+    const user = req.body.data;
+    console.log(req.headers.authorization, 'USER');
+
+    if (user) {
+      return res.status(200).json({ role: user.role });
+    }
+    return res.status(401).json({ message: 'Invalid token' });
+  };
 }
