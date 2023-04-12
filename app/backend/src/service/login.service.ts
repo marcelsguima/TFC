@@ -1,6 +1,7 @@
 import { ModelStatic } from 'sequelize';
 import * as bcrypt from 'bcryptjs';
 
+import { log } from 'console';
 import User from '../database/models/User.model';
 import { ILogin, IUser } from '../interfaces/IUser';
 
@@ -21,7 +22,9 @@ export default class LoginService {
     if (!user) {
       throw new Error('Invalid email or password');
     }
-    if (bcrypt.compareSync(user.password, password)) {
+    console.log(bcrypt.compareSync(password, user.password), 'PASSWORD');
+
+    if (!bcrypt.compareSync(password, user.password)) {
       throw new Error('Invalid email or password');
     }
 

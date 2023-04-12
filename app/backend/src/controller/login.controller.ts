@@ -9,16 +9,17 @@ export default class LoginController {
 
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
-    if (!email || !password) {
-      return res.status(400).json({ message: 'All fields must be filled' });
+
+    try {
+      const user = await this._service.login({ email, password });
+
+      const { id, username, role } = user;
+      const data: ILogin = { username, email, role, id };
+      const token = this._tokenJWT.generateToken(data);
+
+      return res.status(200).json({ token });
+    } catch (err) {
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
-
-    const user = await this._service.login({ email, password });
-
-    const { id, username, role } = user;
-    const data: ILogin = { username, email, role, id };
-    const token = await this._tokenJWT.generateToken(data);
-
-    res.status(200).json({ token });
   }
 }
